@@ -80,6 +80,12 @@ app.get("/login", (req,res)=>{
 app.get("/Register", (req,res)=>{
     res.render('register');
 })
+app.get("/careregister", (req,res)=>{
+    res.render('careregister');
+})
+app.get("/option", (req,res)=>{
+    res.render('registeroption');
+})
 app.get('*', (req,res)=>{
     res.render('404');
 })
