@@ -74,7 +74,12 @@ app.use(flash());
 app.get("/", (req,res)=>{
     res.render('index');
 })
-
+app.get("/login", (req,res)=>{
+    res.render('loginpage');
+})
+app.get("/Register", (req,res)=>{
+    res.render('register');
+})
 app.get('*', (req,res)=>{
     res.render('404');
 })
