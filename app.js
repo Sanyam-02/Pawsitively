@@ -74,23 +74,30 @@ app.use(flash());
 app.get("/", (req,res)=>{
     res.render('index');
 })
-app.get("/index", (req,res)=>{
-    res.render('index');
-})
 
 app.get("/login", (req,res)=>{
     res.render('loginpage');
 })
 
 app.get("/register", (req,res)=>{
+    res.render('registeroption');
+})
+
+app.post('/register', (req,res)=>{
+    const {typeOfUser} = req.body;
+    if(typeOfUser == "pet"){
+        res.redirect("/petregister")
+    }else{
+        res.redirect("/careregister")
+    }
+})
+
+app.get("/petregister", (req,res)=>{
     res.render('register');
 })
 
 app.get("/careregister", (req,res)=>{
     res.render('careregister');
-})
-app.get("/option", (req,res)=>{
-    res.render('registeroption');
 })
 
 app.get('*', (req,res)=>{
