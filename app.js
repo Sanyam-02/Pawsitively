@@ -81,9 +81,19 @@ app.get("/index", (req,res)=>{
 app.get("/login", (req,res)=>{
     res.render('loginpage');
 })
-app.get("/Register", (req,res)=>{
+
+app.get("/register", (req,res)=>{
     res.render('register');
 })
+
+app.get("/caretakerregister", (req,res)=>{
+    res.render('careredister');
+})
+
+// app.get("/Register", (req,res)=>{
+//     res.render('register');
+// })
+
 app.get('*', (req,res)=>{
     res.render('404');
 })
