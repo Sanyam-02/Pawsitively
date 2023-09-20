@@ -74,6 +74,9 @@ app.use(flash());
 app.get("/", (req,res)=>{
     res.render('index');
 })
+app.get("/index", (req,res)=>{
+    res.render('index');
+})
 
 app.get('*', (req,res)=>{
     res.render('404');
