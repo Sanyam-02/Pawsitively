@@ -74,18 +74,35 @@ app.use(flash());
 app.get("/", (req,res)=>{
     res.render('index');
 })
+app.get("/index", (req,res)=>{
+    res.render('index');
+})
+
 app.get("/login", (req,res)=>{
     res.render('loginpage');
 })
-app.get("/Register", (req,res)=>{
+
+app.get("/register", (req,res)=>{
     res.render('register');
 })
+<<<<<<< HEAD
 app.get("/careregister", (req,res)=>{
     res.render('careregister');
 })
 app.get("/option", (req,res)=>{
     res.render('registeroption');
 })
+=======
+
+app.get("/caretakerregister", (req,res)=>{
+    res.render('careredister');
+})
+
+// app.get("/Register", (req,res)=>{
+//     res.render('register');
+// })
+
+>>>>>>> 48dd7778f310e2d139bfcc285dfc0bd44a98d6c1
 app.get('*', (req,res)=>{
     res.render('404');
 })
