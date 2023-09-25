@@ -47,6 +47,6 @@ module.exports.saveProvider = async(req)=>{
     petcareprovider.save();
 }
 
-module.exports.saveBooking = async(req){
-    
+module.exports.saveBooking = async(req)=>{
+
 }
