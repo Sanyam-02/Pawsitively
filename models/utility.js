@@ -48,5 +48,12 @@ module.exports.saveProvider = async(req)=>{
 }
 
 module.exports.saveBooking = async(req)=>{
-
+    const { username,proName,date,agenda} = req.body;
+    const booking = new Booking({
+        uname: username,
+        provider_name: proName,
+        schedule: date,
+        agenda: agenda
+    });
+    booking.save();
 }
