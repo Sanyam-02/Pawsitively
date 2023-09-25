@@ -18,17 +18,17 @@ const mongoSanitize = require('express-mongo-sanitize');
 const MongoStore = require('connect-mongo');
 const app = express();
 
-// const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
-// mongoose.connect(dbUrl, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// })
+const dbUrl = 'mongodb://localhost:27017/pawsitively';
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once("open", ()=>{
-//     console.log("Database Connected");
-// });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once("open", ()=>{
+    console.log("Database Connected");
+});
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
@@ -41,34 +41,34 @@ app.use(mongoSanitize({
     replaceWith: '_',
 }))
 
-const secret = process.env.SECRET || 'thisisasecret';
+const secret = 'thisisasecret';
 
-// const store = MongoStore.create({
-//     mongoUrl: dbUrl,
-//     touchAfter: 24 * 3600,
-//     crypto: {
-//         secret,
-//     },
-// });
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 3600,
+    crypto: {
+        secret,
+    },
+});
 
-// store.on('error', function(e){
-//     console.log("Session Store Error ", e);
-// })
+store.on('error', function(e){
+    console.log("Session Store Error ", e);
+})
 
-// const sessionConfig = {
-//     store,
-//     name: 'newSession',
-//     secret,
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//         httpOnly: true,
-//         // secure:
-//         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-//         maxAge: 1000 * 60 * 60 * 24 * 7
-//     }
-// } 
-// app.use(session(sessionConfig))
+const sessionConfig = {
+    store,
+    name: 'newSession',
+    secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        // secure:
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+} 
+app.use(session(sessionConfig))
 app.use(flash());
 
 app.get("/", (req,res)=>{
@@ -76,28 +76,36 @@ app.get("/", (req,res)=>{
 })
 
 app.get("/login", (req,res)=>{
-    res.render('loginpage');
+    res.render('user/login');
 })
 
 app.get("/register", (req,res)=>{
-    res.render('registeroption');
+    res.render('user/register');
 })
 
 app.post('/register', (req,res)=>{
     const {typeOfUser} = req.body;
     if(typeOfUser == "pet"){
-        res.redirect("/petregister")
+        res.redirect("/RegisterOwner")
     }else{
-        res.redirect("/careregister")
+        res.redirect("/RegisterCaretaker")
     }
 })
 
-app.get("/petregister", (req,res)=>{
-    res.render('register');
+app.get("/RegisterOwner", (req,res)=>{
+    res.render('user/RegisterOwner');
 })
 
-app.get("/careregister", (req,res)=>{
-    res.render('careregister');
+app.post("/RegisterOwner", (req,res)=>{
+    res.send(req.body);
+})
+
+app.get("/RegisterCaretaker", (req,res)=>{
+    res.render('user/RegisterCaretaker');
+})
+
+app.post("/RegisterCaretaker", (req,res)=>{
+    res.send(req.body)
 })
 
 app.get('*', (req,res)=>{
