@@ -1,13 +1,14 @@
 
 
 // Creating a mongoose collection Schema
-const petOwner = new mongoose.Schema({
+export const petOwner = new mongoose.Schema({
     uname: String,
     password: String,
     fname: String,
     lname: String,
     email: String,
     phno: Number,
+    pet_type: String,
     Vaccine_status: Boolean,
     img_url: String,
     address: String,
@@ -17,7 +18,7 @@ const petOwner = new mongoose.Schema({
     zip: Number
 });
 
-const petCareProvider = new mongoose.Schema({
+export const petCareProvider = new mongoose.Schema({
     uname: String,
     password: String,
     name: String,
@@ -32,7 +33,7 @@ const petCareProvider = new mongoose.Schema({
     zip: Number
 });
 
-const booking = new mongoose.Schema({
+export const booking = new mongoose.Schema({
     uname: String,
     provider_name: String,
     schedule: Date,
