@@ -11,6 +11,7 @@ const LocalStrategy = require('passport-local');
 // const User = require('./models/user');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
+const { saveOwner, saveProvider, saveBooking } = require('./models/utility');
 // const userRoutes = require('./routes/users')
 // const campgroundRoutes = require('./routes/campground');
 // const reviewRoutes = require('./routes/review');
@@ -96,8 +97,9 @@ app.get("/RegisterOwner", (req,res)=>{
     res.render('user/RegisterOwner');
 })
 
-app.post("/RegisterOwner", (req,res)=>{
-    res.send(req.body);
+app.post("/RegisterOwner", async (req,res)=>{
+    await saveOwner(req);
+    res.redirect('/');
 })
 
 app.get("/RegisterCaretaker", (req,res)=>{
@@ -106,6 +108,10 @@ app.get("/RegisterCaretaker", (req,res)=>{
 
 app.post("/RegisterCaretaker", (req,res)=>{
     res.send(req.body)
+})
+
+app.get('/category', (req,res)=>{
+    res.render('category')
 })
 
 app.get('*', (req,res)=>{

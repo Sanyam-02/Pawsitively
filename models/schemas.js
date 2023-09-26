@@ -1,8 +1,12 @@
-
+const mongoose = require('mongoose');
 
 // Creating a mongoose collection Schema
-export const petOwner = new mongoose.Schema({
-    uname: String,
+module.exports.petOwner = new mongoose.Schema({
+    uname: {
+        type: String,
+        required: true,
+        unique: true
+    },
     password: String,
     fname: String,
     lname: String,
@@ -18,8 +22,12 @@ export const petOwner = new mongoose.Schema({
     zip: Number
 });
 
-export const petCareProvider = new mongoose.Schema({
-    uname: String,
+module.exports.petCareProvider = new mongoose.Schema({
+    uname: {
+        type: String,
+        required: true,
+        unique: true
+    },
     password: String,
     name: String,
     email: String,
@@ -33,7 +41,7 @@ export const petCareProvider = new mongoose.Schema({
     zip: Number
 });
 
-export const booking = new mongoose.Schema({
+module.exports.booking = new mongoose.Schema({
     uname: String,
     provider_name: String,
     schedule: Date,

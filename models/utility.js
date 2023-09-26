@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost:27017/pawsitively");
 
-import { petOwner,petCareProvider,booking, petCareProvider } from './schemas';
+const { petOwner,petCareProvider,booking } = require('./schemas');
 
-const PetOwner = mongoose.model("PetOwner", petOwner);
-const PetCareProvider = mongoose.model("PetCareProvider", petCareProvider);
-const Booking = mongoose.model("Booking", booking);
+const PetOwnerModel = mongoose.model("PetOwner", petOwner);
+const PetCareProviderModel = mongoose.model("PetCareProvider", petCareProvider);
+const BookingModel = mongoose.model("Booking", booking);
 
 module.exports.saveOwner = async(req)=>{
     const { username,password, firstName,lastName, email,phnNumber,type,Vaccine, userImage,add1,add2,city,state ,zipCode } = req.body
-    const petowner = new PetOwner({
+    const petowner = new PetOwnerModel({
         uname: username,
         password: password,
         fname: firstName,
@@ -17,7 +17,7 @@ module.exports.saveOwner = async(req)=>{
         email: email,
         phno: phnNumber,
         pet_type: type,
-        Vaccine_status: Vaccine,
+        Vaccine_status: Vaccine == 'true'? true: false,
         img_url: userImage,
         address: add1,
         address2: add2,
@@ -30,7 +30,7 @@ module.exports.saveOwner = async(req)=>{
 
 module.exports.saveProvider = async(req)=>{
     const { username,password,orgName,orgMail,organization,phoneNumber,altph,add1,add2,city,state,zipCode } = req.body;
-    const petcareprovider = new PetCareProvider({
+    const petcareprovider = new PetCareProviderModel({
         uname: username,
         password: password,
         name: orgName,
@@ -49,7 +49,7 @@ module.exports.saveProvider = async(req)=>{
 
 module.exports.saveBooking = async(req)=>{
     const { username,proName,date,agenda} = req.body;
-    const booking = new Booking({
+    const booking = new BookingModel({
         uname: username,
         provider_name: proName,
         schedule: date,
