@@ -80,6 +80,23 @@ app.get("/login", (req,res)=>{
     res.render('user/login');
 })
 
+app.post("/login", (req,res)=>{
+    let {username, password} = req.body;
+    PetOwnerModel.find({ uname: username, password:password }).then(function (items, err) {
+        if (err) console.log(err);
+        else {
+            if (items.length == 0) {
+                console.log("Invalid Password");
+                res.render('user/404')
+            }
+            else {
+                res.render('user/login');
+            }
+        }
+    })
+    
+})
+
 app.get("/register", (req,res)=>{
     res.render('user/register');
 })
