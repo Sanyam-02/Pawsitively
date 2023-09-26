@@ -110,8 +110,16 @@ app.post("/RegisterCaretaker", (req,res)=>{
     res.send(req.body)
 })
 
-app.get('/category', (req,res)=>{
-    res.render('category')
+app.get('/service-categories', (req,res)=>{
+    res.render('services/category')
+})
+
+app.get('/services-list', (req,res)=>{
+    res.render('services/service-list')
+})
+
+app.get('/service-detail', (req,res)=>{
+    res.render('services/service-detail')
 })
 
 app.get('*', (req,res)=>{
