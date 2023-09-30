@@ -35,19 +35,23 @@
             <h4>Pet details</h4>
             <div class="row mb-3">
                 <div class="form-group col-md-6">
-                    <select id="inputGender" class="form-control" name="type" required>
-                        <option selected>Type of pet</option>
+                    <select id="Category" class="form-select" name="type" required>
+                        <option value="" disabled selected> Type of pet</option>
+
                         <option>Dog</option>
                         <option>Cat</option>
+                        <option>Rabbit</option>
                         <option>Other</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <select id="inputGender" class="form-control" name="Vaccine" required>
-                        <option selected>Vaccination Status</option>
-                        <option value="true">Vaccinated</option>
-                        <option value="false">Not Vaccinated</option>
-                    </select>
+                  
+                    <select id="VaccinationStatus" class="form-select" aria-label="Default select example" name="Vaccine" required>
+                        <option value="" disabled selected> Vaccination Status</option>
+
+                        <option value="1">Vaccinated</option>
+                        <option value="2">Not Vaccinated</option>
+                      </select>
                 </div>
             </div>
             <div class="mb-3">
