@@ -25,7 +25,7 @@ module.exports.saveOwner = async(req)=>{
         state: state,
         zip: zipCode
     });
-    PetOwnerModel.find({ uname: username }).then(function (items, err) {
+    await PetOwnerModel.find({ uname: username }).then(function (items, err) {
         if (err) console.log(err);
         else {
             if (items.length != 0) {

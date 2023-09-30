@@ -4,17 +4,17 @@ const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const session  = require('express-session')
 const flash = require('connect-flash');
-// const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-// const User = require('./models/user');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const { saveOwner, saveProvider, saveBooking } = require('./models/utility');
-// const userRoutes = require('./routes/users')
-// const campgroundRoutes = require('./routes/campground');
-// const reviewRoutes = require('./routes/review');
+const { petOwner,petCareProvider,booking } = require('./models/schemas');
+
+const PetOwnerModel = mongoose.model("PetOwner", petOwner);
+const PetCareProviderModel = mongoose.model("PetCareProvider", petCareProvider);
+const BookingModel = mongoose.model("Booking", booking);
 
 const MongoStore = require('connect-mongo');
 const app = express();
@@ -72,6 +72,13 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 app.use(flash());
 
+app.use((req,res,next)=>{
+    res.locals.currentUser = req.session.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
+
 app.get("/", (req,res)=>{
     res.render('index');
 })
@@ -86,15 +93,28 @@ app.post("/login", (req,res)=>{
         if (err) console.log(err);
         else {
             if (items.length == 0) {
-                console.log("Invalid Password");
-                res.render('user/404')
+                req.flash('error', 'Invalid Password');
+                res.redirect('/login')
             }
             else {
-                res.render('user/login');
+                req.session.user = {
+                    username: username
+                }
+                res.redirect('/');
             }
         }
     })
     
+})
+
+app.get('/logout', (req,res)=>{
+    try{
+        req.flash('success','Logged Out!!')
+        req.session.destroy()
+        res.redirect('/')
+    }catch(e){
+        console.log(e)
+    }
 })
 
 app.get("/register", (req,res)=>{
@@ -115,7 +135,7 @@ app.get("/RegisterOwner", (req,res)=>{
 })
 
 app.post("/RegisterOwner", async (req,res)=>{
-    await saveOwner(req);
+    saveOwner(req);
     res.redirect('/');
 })
 
