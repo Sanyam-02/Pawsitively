@@ -159,6 +159,12 @@ app.get('/service-detail', (req,res)=>{
     res.render('services/service-detail')
 })
 
+app.get('/caretaker-list', (req,res)=>{
+    res.render('services/caretaker-list')
+})
+app.get("/CaretakerProfile", (req,res)=>{
+    res.render('user/CaretakerProfile');
+})
 app.get('*', (req,res)=>{
     res.render('404');
 })
