@@ -165,6 +165,9 @@ app.get('/caretaker-list', (req,res)=>{
 app.get("/CaretakerProfile", (req,res)=>{
     res.render('user/CaretakerProfile');
 })
+app.get("/Confirmation", (req,res)=>{
+    res.render('ConfirmationPage');
+})
 app.get("/goals", (req,res)=>{
     res.render('goals');
 })
