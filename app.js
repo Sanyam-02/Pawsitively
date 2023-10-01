@@ -80,7 +80,13 @@ app.use((req,res,next)=>{
 })
 
 app.get("/", (req,res)=>{
-    res.render('index');
+    if("user" in req.session && "usertype" in req.session.user){
+        console.log(req.session.user.usertype);
+        res.render('index');
+    }
+    else{
+        res.redirect("/login");
+    }
 })
 
 app.get("/login", (req,res)=>{
@@ -89,21 +95,38 @@ app.get("/login", (req,res)=>{
 
 app.post("/login", (req,res)=>{
     let {username, password} = req.body;
+
     PetOwnerModel.find({ uname: username, password:password }).then(function (items, err) {
         if (err) console.log(err);
         else {
             if (items.length == 0) {
-                req.flash('error', 'Invalid Password');
-                res.redirect('/login')
+                PetCareProviderModel.find({ uname: username, password: password }).then(function (items, err) {
+                    if (err) console.log(err);
+                    else {
+                        if (items.length == 0) {
+                            req.flash('error', 'Invalid Password');
+                            res.redirect('/login')
+                        }
+                        else {
+                            req.session.user = {
+                                username: username,
+                                usertype: "provider"
+                            }
+                            res.redirect('/');
+                        }
+                    }
+                })
             }
             else {
                 req.session.user = {
-                    username: username
+                    username: username,
+                    usertype: "owner"
                 }
                 res.redirect('/');
             }
         }
     })
+
     
 })
 
