@@ -194,6 +194,9 @@ app.get("/Confirmation", (req,res)=>{
 app.get("/goals", (req,res)=>{
     res.render('goals');
 })
+app.get("/serviceBook", (req,res)=>{
+    res.render('user/serviceBook');
+})
 app.get('*', (req,res)=>{
     res.render('404');
 })
