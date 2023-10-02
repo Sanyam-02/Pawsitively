@@ -58,7 +58,7 @@ module.exports.saveProvider = async(req)=>{
         if (err) console.log(err);
         else {
             if (items.length != 0) {
-                alert("Organization already registered");
+                alert("User already registered");
             }
             else {
                 petcareprovider.save();

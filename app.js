@@ -159,6 +159,11 @@ app.get("/RegisterOwner", (req,res)=>{
 
 app.post("/RegisterOwner", async (req,res)=>{
     saveOwner(req);
+    const { username } = req.body
+    req.session.user = {
+        username: username,
+        usertype: "owner"
+    }
     res.redirect('/');
 })
 
@@ -167,7 +172,13 @@ app.get("/RegisterCaretaker", (req,res)=>{
 })
 
 app.post("/RegisterCaretaker", (req,res)=>{
-    res.send(req.body)
+    saveProvider(req);
+    const { username } = req.body
+    req.session.user = {
+        username: username,
+        usertype: "provider"
+    }
+    res.redirect('/');
 })
 
 app.get('/service-categories', (req,res)=>{
