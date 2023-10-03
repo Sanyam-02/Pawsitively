@@ -108,21 +108,26 @@ app.post("/login", (req,res)=>{
                             res.redirect('/login')
                         }
                         else {
-                            req.session.user = {
-                                username: username,
-                                usertype: "provider"
+                            if(items.password == password){
+                                req.session.user = {
+                                    username: username,
+                                    usertype: "provider"
+                                }
+                                res.redirect('/');
                             }
-                            res.redirect('/');
+                            
                         }
                     }
                 })
             }
             else {
-                req.session.user = {
-                    username: username,
-                    usertype: "owner"
+                if (items.password == password) {
+                    req.session.user = {
+                        username: username,
+                        usertype: "owner"
+                    }
+                    res.redirect('/');
                 }
-                res.redirect('/');
             }
         }
     })
