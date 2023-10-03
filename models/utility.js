@@ -25,17 +25,7 @@ module.exports.saveOwner = async(req)=>{
         state: state,
         zip: zipCode
     });
-    await PetOwnerModel.find({ uname: username }).then(function (items, err) {
-        if (err) console.log(err);
-        else {
-            if (items.length != 0) {
-                console.log("User already registered");
-            }
-            else {
-                petowner.save();
-            }
-        }
-    })
+    petowner.save();
 }
 
 module.exports.saveProvider = async(req)=>{
@@ -54,17 +44,7 @@ module.exports.saveProvider = async(req)=>{
         state: state,
         zip: zipCode
     });
-    PetCareProviderModel.find({ uname: username }).then(function (err, items) {
-        if (err) console.log(err);
-        else {
-            if (items.length != 0) {
-                alert("User already registered");
-            }
-            else {
-                petcareprovider.save();
-            }
-        }
-    })
+    petcareprovider.save();
 }
 
 module.exports.saveBooking = async(req)=>{

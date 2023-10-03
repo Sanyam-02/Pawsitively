@@ -87,18 +87,18 @@ app.get("/login", (req,res)=>{
     res.render('user/login');
 })
 
-app.post("/login", (req,res)=>{
+app.post("/login", async(req,res)=>{
     let {username, password} = req.body;
-
-    PetOwnerModel.find({ uname: username, password:password }).then(function (items, err) {
+    
+    await PetOwnerModel.find({ uname: username }).then(function (items, err) {
         if (err) console.log(err);
         else {
             if (items.length == 0) {
-                PetCareProviderModel.find({ uname: username, password: password }).then(function (items, err) {
+                PetCareProviderModel.find({ uname: username }).then(function (items, err) {
                     if (err) console.log(err);
                     else {
                         if (items.length == 0) {
-                            req.flash('error', 'Invalid Password');
+                            req.flash('error', 'User not found');
                             res.redirect('/login')
                         }
                         else {
@@ -109,18 +109,26 @@ app.post("/login", (req,res)=>{
                                 }
                                 res.redirect('/');
                             }
+                            else{
+                                req.flash('error', 'User not found');
+                                console.log("Invalid Password!");
+                            }
                             
                         }
                     }
                 })
             }
             else {
-                if (items.password == password) {
+                if (items[0].password == password) {
                     req.session.user = {
                         username: username,
                         usertype: "owner"
                     }
                     res.redirect('/');
+                }
+                else {
+                    req.flash('error', 'User not found');
+                    console.log("Invalid Password!");
                 }
             }
         }
@@ -157,27 +165,70 @@ app.get("/RegisterOwner", (req,res)=>{
 })
 
 app.post("/RegisterOwner", async (req,res)=>{
-    saveOwner(req);
-    const { username } = req.body
-    req.session.user = {
-        username: username,
-        usertype: "owner"
-    }
-    res.redirect('/');
+    const {username} = req.body;
+    await PetOwnerModel.find({ uname: username }).then(function (items, err) {
+        if (err) console.log(err);
+        else {
+            if (items.length != 0) {
+                console.log("User already registered");
+            }
+            else {
+                PetCareProviderModel.find({ uname: username }).then(function (err, items) {
+                    if (err) console.log(err);
+                    else {
+                        if (items.length != 0) {
+                            alert("User already registered");
+                        }
+                        else {
+                            saveOwner(req);
+                            const { username } = req.body
+                            req.session.user = {
+                                username: username,
+                                usertype: "owner"
+                            }
+                            res.redirect('/');
+                        }
+                    }
+                })
+            }
+        }
+    })
+    
 })
 
 app.get("/RegisterCaretaker", (req,res)=>{
     res.render('user/RegisterCaretaker');
 })
 
-app.post("/RegisterCaretaker", (req,res)=>{
-    saveProvider(req);
-    const { username } = req.body
-    req.session.user = {
-        username: username,
-        usertype: "provider"
-    }
-    res.redirect('/');
+app.post("/RegisterCaretaker", async (req,res)=>{
+    const { username } = req.body;
+    await PetOwnerModel.find({ uname: username }).then(function (items, err) {
+        if (err) console.log(err);
+        else {
+            if (items.length != 0) {
+                console.log("User already registered");
+            }
+            else {
+                PetCareProviderModel.find({ uname: username }).then(function (err, items) {
+                    if (err) console.log(err);
+                    else {
+                        if (items.length != 0) {
+                            alert("User already registered");
+                        }
+                        else {
+                            saveProvider(req);
+                            const { username } = req.body
+                            req.session.user = {
+                                username: username,
+                                usertype: "provider"
+                            }
+                            res.redirect('/');
+                        }
+                    }
+                })
+            }
+        }
+    })
 })
 
 app.get('/service-categories', (req,res)=>{
