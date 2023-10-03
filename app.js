@@ -80,13 +80,7 @@ app.use((req,res,next)=>{
 })
 
 app.get("/", (req,res)=>{
-    if("user" in req.session && "usertype" in req.session.user){
-        console.log(req.session.user.usertype);
-        res.render('index');
-    }
-    else{
-        res.redirect("/login");
-    }
+    res.render('index');
 })
 
 app.get("/login", (req,res)=>{
