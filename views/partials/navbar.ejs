@@ -15,8 +15,12 @@
             <% if (!currentUser) { %>
                 <a href="/login" class="nav-item nav-link">Login</a>
             <% } else { %>
+                <% if (currentUser.usertype == 'provider') { %>
+                <a href="/addService" class="nav-item nav-link">Add Service</a>
+                <% } %>
                 <a href="/logout" class="nav-item nav-link">Logout</a>
             <% } %> 
+            
         </div>
     </div>
 </nav>

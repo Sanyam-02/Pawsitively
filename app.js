@@ -102,7 +102,7 @@ app.post("/login", async(req,res)=>{
                             res.redirect('/login')
                         }
                         else {
-                            if(items.password == password){
+                            if(items[0].password == password){
                                 req.session.user = {
                                     username: username,
                                     usertype: "provider"
@@ -209,15 +209,15 @@ app.post("/RegisterCaretaker", async (req,res)=>{
                 console.log("User already registered");
             }
             else {
-                PetCareProviderModel.find({ uname: username }).then(function (err, items) {
+                PetCareProviderModel.find({ uname: username }).then(function (items, err) {
                     if (err) console.log(err);
                     else {
                         if (items.length != 0) {
-                            alert("User already registered");
+                            console.log("User already registered");
                         }
                         else {
+                            console.log("ji");
                             saveProvider(req);
-                            const { username } = req.body
                             req.session.user = {
                                 username: username,
                                 usertype: "provider"
@@ -249,6 +249,11 @@ app.get('/caretaker-list', (req,res)=>{
 app.get("/CaretakerProfile", (req,res)=>{
     res.render('user/CaretakerProfile');
 })
+
+app.get("/addService", (req, res) => {
+    res.render('services/addservice');
+})
+
 app.get("/Confirmation", (req,res)=>{
     res.render('ConfirmationPage');
 })
