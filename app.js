@@ -242,8 +242,9 @@ app.get('/services',async (req,res)=>{
     getServiceData(req,res);
 })
 
-app.get('/service-detail', (req,res)=>{
-    
+app.get('/services/:id', async(req,res)=>{
+    const { id } = req.params
+    const dt1 = await ServiceModel.findById(id);
     res.render('services/service-detail',{dt1:dt1})
 })
 
