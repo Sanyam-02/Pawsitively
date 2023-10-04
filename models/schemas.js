@@ -49,5 +49,18 @@ module.exports.booking = new mongoose.Schema({
 });
 
 
+module.exports.service = new mongoose.Schema({
+    serviceName: String,
+    serviceDescription: String,
+    experienceDescription: String,
+    Fee: Number,
+    uname: {
+        type: String,
+        required: true,
+        unique: true
+    },
+});
+
+
 
 

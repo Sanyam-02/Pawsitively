@@ -9,8 +9,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-const { saveOwner, saveProvider, saveBooking } = require('./models/utility');
-const { petOwner,petCareProvider,booking } = require('./models/schemas');
+const { saveOwner, saveProvider, saveBooking,saveService } = require('./models/utility');
+const { petOwner,petCareProvider,booking,service } = require('./models/schemas');
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
 const PetCareProviderModel = mongoose.model("PetCareProvider", petCareProvider);
@@ -21,8 +21,8 @@ const app = express();
 
 let data1="",data2="",data3="",data4="";
 
-//const dbUrl = 'mongodb://127.0.0.1/pawsitively';
-const dbUrl = 'mongodb://localhost:27017/pawsitively';
+const dbUrl = 'mongodb://127.0.0.1/pawsitively';
+//const dbUrl = 'mongodb://localhost:27017/pawsitively';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -176,7 +176,7 @@ app.post("/RegisterOwner", async (req,res)=>{
                 console.log("User already registered");
             }
             else {
-                PetCareProviderModel.find({ uname: username }).then(function (err, items) {
+                PetCareProviderModel.find({ uname: username }).then(function (items, err) {
                     if (err) console.log(err);
                     else {
                         if (items.length != 0) {
@@ -219,7 +219,6 @@ app.post("/RegisterCaretaker", async (req,res)=>{
                             console.log("User already registered");
                         }
                         else {
-                            console.log("ji");
                             saveProvider(req);
                             req.session.user = {
                                 username: username,
@@ -242,6 +241,9 @@ app.get('/services-list', (req,res)=>{
     res.render('services/service-list')
 })
 
+app.get('/service-detail', (req,res)=>{
+    res.render('services/service-detail')
+})
 
 app.get('/caretaker-list', (req,res)=>{
     res.render('services/caretaker-list')
@@ -255,7 +257,12 @@ app.get("/addservice", (req, res) => {
 })
 
 app.post("/addservice", async (req,res)=>{
-    res.render('services/service-detail',{dt1:req.body});
+    let dt1 = req.body;
+    dt1["username"] = req.session.user.username;
+    dt1["usertype"] = req.session.user.usertype;
+    console.log(dt1);
+    saveService(dt1);
+    res.render('services/service-detail',{dt1:dt1});
 })
 
 app.get("/Confirmation", (req,res)=>{

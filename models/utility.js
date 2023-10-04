@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/pawsitively");
+mongoose.connect("mongodb://127.0.0.1/pawsitively");
 //const dbUrl = 'mongodb://localhost:27017/pawsitively';
-const { petOwner,petCareProvider,booking } = require('./schemas');
+const { petOwner,petCareProvider,booking,service } = require('./schemas');
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
 const PetCareProviderModel = mongoose.model("PetCareProvider", petCareProvider);
 const BookingModel = mongoose.model("Booking", booking);
+const ServiceModel = mongoose.model("Service", service);
 
 module.exports.saveOwner = async(req)=>{
     const { username,password, firstName,lastName, email,phnNumber,type,Vaccine, userImage,add1,add2,city,state ,zipCode } = req.body
@@ -57,3 +58,18 @@ module.exports.saveBooking = async(req)=>{
     });
     booking.save();
 }
+
+
+
+module.exports.saveService = async(req)=>{
+    const { EName,ChargingFee, servicedescription ,Experiencedescription, username} = req
+    const service = new ServiceModel({
+        serviceName: EName,
+        serviceDescription: servicedescription,
+        experienceDescription: Experiencedescription,
+        Fee: ChargingFee,
+        uname: username
+    });
+    service.save();
+}
+
