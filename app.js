@@ -19,8 +19,6 @@ const BookingModel = mongoose.model("Booking", booking);
 const MongoStore = require('connect-mongo');
 const app = express();
 
-let data1="",data2="",data3="",data4="";
-
 //const dbUrl = 'mongodb://127.0.0.1/pawsitively';
 const dbUrl = 'mongodb://localhost:27017/pawsitively';
 mongoose.connect(dbUrl, {
@@ -105,7 +103,7 @@ app.post("/login", async(req,res)=>{
                             res.redirect('/login')
                         }
                         else {
-                            if(items[0].password == password){
+                            if(items.password == password){
                                 req.session.user = {
                                     username: username,
                                     usertype: "provider"
@@ -212,14 +210,15 @@ app.post("/RegisterCaretaker", async (req,res)=>{
                 console.log("User already registered");
             }
             else {
-                PetCareProviderModel.find({ uname: username }).then(function (items, err) {
+                PetCareProviderModel.find({ uname: username }).then(function (err, items) {
                     if (err) console.log(err);
                     else {
                         if (items.length != 0) {
-                            console.log("User already registered");
+                            alert("User already registered");
                         }
                         else {
                             saveProvider(req);
+                            const { username } = req.body
                             req.session.user = {
                                 username: username,
                                 usertype: "provider"
@@ -241,6 +240,9 @@ app.get('/services-list', (req,res)=>{
     res.render('services/service-list')
 })
 
+app.get('/service-detail', (req,res)=>{
+    res.render('services/service-detail')
+})
 app.get('/service-detail', (req,res)=>{
     res.render('services/service-detail')
 })
