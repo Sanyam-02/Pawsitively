@@ -19,6 +19,9 @@ const BookingModel = mongoose.model("Booking", booking);
 const MongoStore = require('connect-mongo');
 const app = express();
 
+let data1="",data2="",data3="",data4="";
+
+//const dbUrl = 'mongodb://127.0.0.1/pawsitively';
 const dbUrl = 'mongodb://localhost:27017/pawsitively';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -102,7 +105,7 @@ app.post("/login", async(req,res)=>{
                             res.redirect('/login')
                         }
                         else {
-                            if(items.password == password){
+                            if(items[0].password == password){
                                 req.session.user = {
                                     username: username,
                                     usertype: "provider"
@@ -209,15 +212,15 @@ app.post("/RegisterCaretaker", async (req,res)=>{
                 console.log("User already registered");
             }
             else {
-                PetCareProviderModel.find({ uname: username }).then(function (err, items) {
+                PetCareProviderModel.find({ uname: username }).then(function (items, err) {
                     if (err) console.log(err);
                     else {
                         if (items.length != 0) {
-                            alert("User already registered");
+                            console.log("User already registered");
                         }
                         else {
+                            console.log("ji");
                             saveProvider(req);
-                            const { username } = req.body
                             req.session.user = {
                                 username: username,
                                 usertype: "provider"
@@ -239,9 +242,6 @@ app.get('/services-list', (req,res)=>{
     res.render('services/service-list')
 })
 
-app.get('/service-detail', (req,res)=>{
-    res.render('services/service-detail')
-})
 
 app.get('/caretaker-list', (req,res)=>{
     res.render('services/caretaker-list')
@@ -249,6 +249,15 @@ app.get('/caretaker-list', (req,res)=>{
 app.get("/CaretakerProfile", (req,res)=>{
     res.render('user/CaretakerProfile');
 })
+
+app.get("/addservice", (req, res) => {
+    res.render('services/addservice');
+})
+
+app.post("/addservice", async (req,res)=>{
+    res.render('services/service-detail',{dt1:req.body});
+})
+
 app.get("/Confirmation", (req,res)=>{
     res.render('ConfirmationPage');
 })

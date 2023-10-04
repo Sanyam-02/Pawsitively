@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost:27017/pawsitively");
-
+//const dbUrl = 'mongodb://localhost:27017/pawsitively';
 const { petOwner,petCareProvider,booking } = require('./schemas');
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
