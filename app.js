@@ -9,13 +9,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-<<<<<<< Updated upstream
-const { saveOwner, saveProvider, saveBooking,saveService } = require('./models/utility');
-const { petOwner,petCareProvider,booking, service } = require('./models/schemas');
-=======
+
 const { saveOwner, saveProvider, saveBooking,saveService,getServiceData } = require('./models/utility');
 const { petOwner,petCareProvider,booking,service } = require('./models/schemas');
->>>>>>> Stashed changes
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
 const PetCareProviderModel = mongoose.model("PetCareProvider", petCareProvider);
