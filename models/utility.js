@@ -73,3 +73,21 @@ module.exports.saveService = async(req)=>{
     await service.save();
 }
 
+module.exports.getServiceData = async(req,res)=>{
+    try{
+        await ServiceModel.find({}).then(function (items, err) {
+            if (err) console.log(err);
+            else {
+                // console.log(items);
+                res.render('services/service-list', {data:items} )
+            }
+        })
+    }catch(err){
+        console.error(err);
+            throw err;
+    }  
+}
+
+    
+    
+

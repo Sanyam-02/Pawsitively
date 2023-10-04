@@ -9,8 +9,13 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
+<<<<<<< Updated upstream
 const { saveOwner, saveProvider, saveBooking,saveService } = require('./models/utility');
 const { petOwner,petCareProvider,booking, service } = require('./models/schemas');
+=======
+const { saveOwner, saveProvider, saveBooking,saveService,getServiceData } = require('./models/utility');
+const { petOwner,petCareProvider,booking,service } = require('./models/schemas');
+>>>>>>> Stashed changes
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
 const PetCareProviderModel = mongoose.model("PetCareProvider", petCareProvider);
@@ -237,16 +242,20 @@ app.get('/service-categories', (req,res)=>{
     res.render('services/category')
 })
 
-app.get('/services-list', (req,res)=>{
-    const data = {};
-    res.render('services/service-list', {data} )
+app.get('/services-list',async (req,res)=>{
+    getServiceData(req,res);
 })
 
 app.get('/service-detail', (req,res)=>{
     res.render('services/service-detail')
 })
 app.get('/service-detail', (req,res)=>{
-    res.render('services/service-detail')
+    let dt1 = req.body;
+    dt1["username"] = req.session.user.username;
+    dt1["usertype"] = req.session.user.usertype;
+    console.log(dt1);
+    saveService(dt1);
+    res.render('services/service-detail',{dt1:dt1})
 })
 
 app.get('/caretaker-list', (req,res)=>{
