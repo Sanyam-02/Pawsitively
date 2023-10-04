@@ -19,6 +19,9 @@ const BookingModel = mongoose.model("Booking", booking);
 const MongoStore = require('connect-mongo');
 const app = express();
 
+let data1="",data2="",data3="",data4="";
+
+//const dbUrl = 'mongodb://127.0.0.1/pawsitively';
 const dbUrl = 'mongodb://localhost:27017/pawsitively';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -239,9 +242,6 @@ app.get('/services-list', (req,res)=>{
     res.render('services/service-list')
 })
 
-app.get('/service-detail', (req,res)=>{
-    res.render('services/service-detail')
-})
 
 app.get('/caretaker-list', (req,res)=>{
     res.render('services/caretaker-list')
@@ -250,8 +250,12 @@ app.get("/CaretakerProfile", (req,res)=>{
     res.render('user/CaretakerProfile');
 })
 
-app.get("/addService", (req, res) => {
+app.get("/addservice", (req, res) => {
     res.render('services/addservice');
+})
+
+app.post("/addservice", async (req,res)=>{
+    res.render('services/service-detail',{dt1:req.body});
 })
 
 app.get("/Confirmation", (req,res)=>{
