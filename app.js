@@ -238,19 +238,12 @@ app.get('/service-categories', (req,res)=>{
     res.render('services/category')
 })
 
-app.get('/services-list',async (req,res)=>{
+app.get('/services',async (req,res)=>{
     getServiceData(req,res);
 })
 
 app.get('/service-detail', (req,res)=>{
-    res.render('services/service-detail')
-})
-app.get('/service-detail', (req,res)=>{
-    let dt1 = req.body;
-    dt1["username"] = req.session.user.username;
-    dt1["usertype"] = req.session.user.usertype;
-    console.log(dt1);
-    saveService(dt1);
+    
     res.render('services/service-detail',{dt1:dt1})
 })
 
