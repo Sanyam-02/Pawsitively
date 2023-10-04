@@ -9,18 +9,16 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="/" class="nav-item nav-link">Home</a>
             <a href="/services-list" class="nav-item nav-link">Service List</a>
-            <a href="/service-detail" class="nav-item nav-link">Service Detail</a>
             <a href="/service-categories" class="nav-item nav-link">Service Categories</a>
             <a href="/caretaker-list" class="nav-item nav-link">Care Providers</a>
             <% if (!currentUser) { %>
                 <a href="/login" class="nav-item nav-link">Login</a>
             <% } else { %>
                 <% if (currentUser.usertype == 'provider') { %>
-                <a href="/addService" class="nav-item nav-link">Add Service</a>
+                    <a href="/addService" class="nav-item nav-link">Add Service</a>
                 <% } %>
                 <a href="/logout" class="nav-item nav-link">Logout</a>
             <% } %> 
-            
         </div>
     </div>
 </nav>

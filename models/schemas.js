@@ -57,7 +57,7 @@ module.exports.service = new mongoose.Schema({
     Fee: Number,
     uname: {
         type: String,
-        required: true,
+        required: true
     },
 });
 

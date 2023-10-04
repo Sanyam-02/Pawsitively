@@ -27,7 +27,7 @@ module.exports.saveOwner = async(req)=>{
         zip: zipCode,
         services: []
     });
-    petowner.save();
+    await petowner.save();
 }
 
 module.exports.saveProvider = async(req)=>{
@@ -47,7 +47,7 @@ module.exports.saveProvider = async(req)=>{
         zip: zipCode,
         services: []
     });
-    petcareprovider.save();
+    await petcareprovider.save();
 }
 
 module.exports.saveBooking = async(req)=>{
@@ -58,7 +58,7 @@ module.exports.saveBooking = async(req)=>{
         schedule: date,
         agenda: agenda
     });
-    booking.save();
+    await booking.save();
 }
 
 
@@ -73,12 +73,23 @@ module.exports.saveService = async(req)=>{
         uname: username
     });
     service.save();
-
-    ServiceModel.find({ uname: username }).then(function (items, err) {
-        if(err) console.log(err);
-        else{
-            PetCareProviderModel.findOneAndUpdate({ uname: username }, { $push: { services: String(items[0]._id)}})
-        }
-    })
 }
+
+module.exports.getServiceData = async(req,res)=>{
+    try{
+        await ServiceModel.find({}).then(function (items, err) {
+            if (err) console.log(err);
+            else {
+                // console.log(items);
+                res.render('services/service-list', {data:items} )
+            }
+        })
+    }catch(err){
+        console.error(err);
+            throw err;
+    }  
+}
+
+    
+    
 
