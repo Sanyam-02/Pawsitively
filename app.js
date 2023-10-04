@@ -103,7 +103,7 @@ app.post("/login", async(req,res)=>{
                             res.redirect('/login')
                         }
                         else {
-                            if(items.password == password){
+                            if(items[0].password == password){
                                 req.session.user = {
                                     username: username,
                                     usertype: "provider"
