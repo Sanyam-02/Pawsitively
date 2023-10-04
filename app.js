@@ -238,7 +238,7 @@ app.get('/service-categories', (req,res)=>{
     res.render('services/category')
 })
 
-app.get('/services-list',async (req,res)=>{
+app.get('/services',async (req,res)=>{
     getServiceData(req,res);
 })
 
