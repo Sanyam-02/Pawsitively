@@ -72,7 +72,10 @@ module.exports.saveService = async(req)=>{
         Fee: ChargingFee,
         uname: username
     });
-    service.save();
+    const provider = await PetCareProviderModel.find({uname:username})
+    provider[0].services.push(service);
+    await service.save()
+    await provider[0].save()
 }
 
 module.exports.getServiceData = async(req,res)=>{

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
 
 // Creating a mongoose collection Schema
 module.exports.petOwner = new mongoose.Schema({
@@ -39,7 +40,12 @@ module.exports.petCareProvider = new mongoose.Schema({
     city: String,
     state: String,
     zip: Number,
-    services: []
+    services: [
+        {   
+            type: Schema.Types.ObjectId,
+            ref: "service"
+        }
+    ]
 });
 
 module.exports.booking = new mongoose.Schema({
