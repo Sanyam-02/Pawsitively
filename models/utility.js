@@ -24,7 +24,8 @@ module.exports.saveOwner = async(req)=>{
         address2: add2,
         city: city,
         state: state,
-        zip: zipCode
+        zip: zipCode,
+        services: []
     });
     petowner.save();
 }
@@ -43,7 +44,8 @@ module.exports.saveProvider = async(req)=>{
         address2: add2,
         city: city,
         state: state,
-        zip: zipCode
+        zip: zipCode,
+        services: []
     });
     petcareprovider.save();
 }
@@ -71,5 +73,12 @@ module.exports.saveService = async(req)=>{
         uname: username
     });
     service.save();
+
+    ServiceModel.find({ uname: username }).then(function (items, err) {
+        if(err) console.log(err);
+        else{
+            PetCareProviderModel.findOneAndUpdate({ uname: username }, { $push: { services: String(items[0]._id)}})
+        }
+    })
 }
 

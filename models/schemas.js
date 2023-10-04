@@ -38,7 +38,8 @@ module.exports.petCareProvider = new mongoose.Schema({
     address2: String,
     city: String,
     state: String,
-    zip: Number
+    zip: Number,
+    services: []
 });
 
 module.exports.booking = new mongoose.Schema({
@@ -57,7 +58,6 @@ module.exports.service = new mongoose.Schema({
     uname: {
         type: String,
         required: true,
-        unique: true
     },
 });
 

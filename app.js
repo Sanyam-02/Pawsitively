@@ -114,7 +114,7 @@ app.post("/login", async(req,res)=>{
                                 req.flash('error', 'User not found');
                                 console.log("Invalid Password!");
                             }
-                            
+
                         }
                     }
                 })
@@ -210,7 +210,7 @@ app.post("/RegisterCaretaker", async (req,res)=>{
                 console.log("User already registered");
             }
             else {
-                PetCareProviderModel.find({ uname: username }).then(function (err, items) {
+                PetCareProviderModel.find({ uname: username }).then(function (items, err) {
                     if (err) console.log(err);
                     else {
                         if (items.length != 0) {
@@ -263,7 +263,6 @@ app.post("/addservice", async (req,res)=>{
     let dt1 = req.body;
     dt1["username"] = req.session.user.username;
     dt1["usertype"] = req.session.user.usertype;
-    console.log(dt1);
     saveService(dt1);
     res.render('services/service-detail',{dt1:dt1});
 })
