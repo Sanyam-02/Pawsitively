@@ -237,7 +237,8 @@ app.get('/service-categories', (req,res)=>{
 })
 
 app.get('/services-list', (req,res)=>{
-    res.render('services/service-list')
+    const data = {};
+    res.render('services/service-list', {data} )
 })
 
 app.get('/service-detail', (req,res)=>{
