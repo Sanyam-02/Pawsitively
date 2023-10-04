@@ -26,7 +26,7 @@ module.exports.saveOwner = async(req)=>{
         state: state,
         zip: zipCode
     });
-    petowner.save();
+    await petowner.save();
 }
 
 module.exports.saveProvider = async(req)=>{
@@ -45,7 +45,7 @@ module.exports.saveProvider = async(req)=>{
         state: state,
         zip: zipCode
     });
-    petcareprovider.save();
+    await petcareprovider.save();
 }
 
 module.exports.saveBooking = async(req)=>{
@@ -56,7 +56,7 @@ module.exports.saveBooking = async(req)=>{
         schedule: date,
         agenda: agenda
     });
-    booking.save();
+    await booking.save();
 }
 
 
@@ -70,6 +70,6 @@ module.exports.saveService = async(req)=>{
         Fee: ChargingFee,
         uname: username
     });
-    service.save();
+    await service.save();
 }
 

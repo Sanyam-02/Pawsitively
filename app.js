@@ -10,11 +10,12 @@ const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const { saveOwner, saveProvider, saveBooking,saveService } = require('./models/utility');
-const { petOwner,petCareProvider,booking,service } = require('./models/schemas');
+const { petOwner,petCareProvider,booking, service } = require('./models/schemas');
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
 const PetCareProviderModel = mongoose.model("PetCareProvider", petCareProvider);
 const BookingModel = mongoose.model("Booking", booking);
+const ServiceModel = mongoose.model("Service", service);
 
 const MongoStore = require('connect-mongo');
 const app = express();
