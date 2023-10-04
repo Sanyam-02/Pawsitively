@@ -21,8 +21,8 @@ const app = express();
 
 let data1="",data2="",data3="",data4="";
 
-const dbUrl = 'mongodb://127.0.0.1/pawsitively';
-//const dbUrl = 'mongodb://localhost:27017/pawsitively';
+//const dbUrl = 'mongodb://127.0.0.1/pawsitively';
+const dbUrl = 'mongodb://localhost:27017/pawsitively';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
