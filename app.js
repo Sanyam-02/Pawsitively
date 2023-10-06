@@ -9,8 +9,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
+const emailService = require('/Users/apple/Documents/pawasitively/new paw/Pawsitively/views/services/emailService.js');
 
-const { saveOwner, saveProvider, saveBooking, saveService, getServiceData, getCaretakerData } = require('./models/utility');
+const { saveOwner, saveProvider, saveBooking,saveService,getServiceData,updateOtp ,getCaretakerData,verifyProvider} = require('./models/utility');
 const { petOwner,petCareProvider,booking,service } = require('./models/schemas');
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
@@ -262,6 +263,26 @@ app.get("/caretakers/:id", async(req,res)=>{
 
 app.get("/addservice", (req, res) => {
     res.render('services/addservice');
+})
+
+app.get("/getOtp/:id", async(req,res)=>{
+    const {id} = req.params
+    const provider = await PetCareProviderModel.findById(id)
+    emailService(provider.email, provider.uname,'provider');
+})
+
+
+app.post("/verifyuser/:username", async(req,res)=>{
+    const { username } = req.params
+    const { otp } = req.body;
+    if(otp == null ){
+        res.send("OTP cannot be null")
+    }
+    let dt1 = {}
+    dt1["username"] = username;
+    dt1["otp"] = otp;
+    verifyProvider(dt1);
+    res.redirect('/caretakers')
 })
 
 app.post("/addservice", async (req,res)=>{

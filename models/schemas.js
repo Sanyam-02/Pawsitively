@@ -9,6 +9,8 @@ module.exports.petOwner = new mongoose.Schema({
         unique: true
     },
     password: String,
+    otp:Number,
+    Verified:Boolean,
     fname: String,
     lname: String,
     email: String,
@@ -43,6 +45,8 @@ module.exports.petCareProvider = new mongoose.Schema({
         unique: true
     },
     password: String,
+    otp:Number,
+    Verified:Boolean,
     name: String,
     email: String,
     org: String,

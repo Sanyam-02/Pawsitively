@@ -25,6 +25,8 @@ module.exports.saveOwner = async(req)=>{
         city: city,
         state: state,
         zip: zipCode,
+        otp:-1,
+        Verified:0,
         services: []
     });
     await petowner.save();
@@ -45,6 +47,8 @@ module.exports.saveProvider = async(req)=>{
         city: city,
         state: state,
         zip: zipCode,
+        otp:-1,
+        Verified:0,
         services: []
     });
     await petcareprovider.save();
@@ -62,6 +66,64 @@ module.exports.saveBooking = async(req)=>{
 }
 
 
+module.exports.updateOtp = async(dt1)=>{
+    const filter = { uname: dt1["username"] };
+if(dt1["Utype"] == "provider" )
+{
+    const update = {
+        $set: {
+            otp:  dt1["otp"],
+        },
+      };
+      const result = await PetCareProviderModel.updateOne(filter, update);
+      if (result.modifiedCount === 1) {
+        console.log('Document updated successfully');
+      } else {
+        console.log('No documents matched the criteria for update');
+      }
+}
+else{
+    const update = {
+        $set: {
+            otp:  dt1["otp"],
+        },
+      };
+      const result = await PetOwnerModel.updateOne(filter, update);
+      if (result.modifiedCount === 1) {
+        console.log('Document updated successfully');
+      } else {
+        console.log('No documents matched the criteria for update');
+      }
+}
+    
+}
+
+module.exports.verifyProvider = async(dt1)=>{
+    const provider = await PetCareProviderModel.find({uname:dt1["username"]})
+    
+    if(provider[0]["otp"]==dt1["otp"])
+    {
+       
+        const filter = { uname: dt1["username"] };
+        const update = {
+            $set: {
+                Verified:  1,
+            },
+          };
+          const result = await PetCareProviderModel.updateOne(filter, update);
+          if (result.modifiedCount === 1) {
+            console.log('Document updated successfully');
+          } else {
+            console.log('No documents matched the criteria for update');
+          }
+          console.log("user verified");
+    }
+    else
+    {
+        console.log(" user not verified");
+    }
+
+}
 
 module.exports.saveService = async(req,res)=>{
     const { EName,ChargingFee, servicedescription ,noteworthy, username} = req
