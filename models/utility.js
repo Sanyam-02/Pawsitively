@@ -93,6 +93,21 @@ module.exports.getServiceData = async(req,res)=>{
     }  
 }
 
+module.exports.getCaretakerData = async(req,res)=>{
+    try{
+        await PetCareProviderModel.find({}).then(function (items, err) {
+            if (err) console.log(err);
+            else {
+                // console.log(items);
+                res.render('services/caretaker-list', {data: items})
+            }
+        })
+    }catch(err){
+        console.error(err);
+            throw err;
+    }  
+}
+
     
     
 

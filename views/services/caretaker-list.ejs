@@ -13,7 +13,7 @@
             }
         </style>
     </head>
-    <div class="container py-5">
+
     <div class="container-xxl bg-white p-0">
         <div class="container-xxl py-5 bg-dark page-header">
             <div class="container my-5 pt-5 pb-4">
@@ -26,65 +26,27 @@
                     <div class="col-md-8">
                         <input type="text" class="form-control border-0" placeholder="Keyword" />
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <button class="btn btn-dark border-0 w-100">Search</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row g-2">
-            <div class="col-md-3">
-                <div class="gradient-custom text-center text-white me-1"
-                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem; border-top-right-radius: .5rem;">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="Avatar"
-                        class="rounded-circle my-5 img-fluid" style="width: 175px;" />
-
-                    <h4>Tiffany</h4>
-                    <h6>Veterinary Assistant</h6>
-                    <p>&#10003 background checked</p>
-                    <p>&#x2197 high demand</p>
-                    <a class="btn btn-primary py-3 px-5 my-3" href="/CaretakerProfile">View Profile</a>
+            <% for( let i = 0; i < data.length; i++ ) { %>
+                <div class="col-md-3">
+                    <div class="gradient-custom text-center text-white me-1"
+                        style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem; border-top-right-radius: .5rem;">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="Avatar"
+                            class="rounded-circle my-5 img-fluid" style="width: 175px;" />
+    
+                        <h4><%= data[i].name %></h4>
+                        <h6><%= data[i].organisation %></h6>
+                        <p>&#10003 background checked</p>
+                        <p>&#x2197 high demand</p>
+                        <a class="btn btn-primary py-3 px-5 my-3" href="/caretakers/<%= data[i]._id %>">View Profile</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="gradient-custom text-center text-white me-1"
-                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem; border-top-right-radius: .5rem;">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="Avatar"
-                        class="rounded-circle my-5 img-fluid" style="width: 175px;" />
-
-                    <h4>Tiffany</h4>
-                    <h6>Veterinary Assistant</h6>
-                    <p>&#10003 background checked</p>
-                    <p>&#x2197 high demand</p>
-                    <a class="btn btn-primary py-3 px-5 my-3" href="/CaretakerProfile">View Profile</a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="gradient-custom text-center text-white me-1"
-                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem; border-top-right-radius: .5rem;">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="Avatar"
-                        class="rounded-circle my-5 img-fluid" style="width: 175px;" />
-
-                    <h4>Tiffany</h4>
-                    <h6>Veterinary Assistant</h6>
-                    <p>&#10003 background checked</p>
-                    <p>&#x2197 high demand</p>
-                    <a class="btn btn-primary py-3 px-5 my-3" href="/CaretakerProfile">View Profile</a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="gradient-custom text-center text-white me-1"
-                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem; border-top-right-radius: .5rem;">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="Avatar"
-                        class="rounded-circle my-5 img-fluid" style="width: 175px;" />
-
-                    <h4>Tiffany</h4>
-                    <h6>Veterinary Assistant</h6>
-                    <p>&#10003 background checked</p>
-                    <p>&#x2197 high demand</p>
-                    <a class="btn btn-primary py-3 px-5 my-3" href="/CaretakerProfile">View Profile</a>
-                </div>
-            </div>
+            <% } %>
         </div>
     </div>
-</div>

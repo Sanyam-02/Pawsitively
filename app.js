@@ -10,7 +10,7 @@ const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 
-const { saveOwner, saveProvider, saveBooking,saveService,getServiceData } = require('./models/utility');
+const { saveOwner, saveProvider, saveBooking, saveService, getServiceData, getCaretakerData } = require('./models/utility');
 const { petOwner,petCareProvider,booking,service } = require('./models/schemas');
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
@@ -248,11 +248,15 @@ app.get('/services/:id', async(req,res)=>{
     res.render('services/service-detail',{dt1:dt1})
 })
 
-app.get('/caretaker-list', (req,res)=>{
-    res.render('services/caretaker-list')
+app.get('/caretakers', (req,res)=>{
+    getCaretakerData(req, res)
 })
-app.get("/CaretakerProfile", (req,res)=>{
-    res.render('user/CaretakerProfile');
+
+app.get("/caretakers/:id", async(req,res)=>{
+    const { id } = req.params
+    const data = await PetCareProviderModel.findById(id)
+    console.log(data);
+    res.render('user/CaretakerProfile', { data });
 })
 
 app.get("/addservice", (req, res) => {
