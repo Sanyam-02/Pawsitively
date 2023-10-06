@@ -31,7 +31,7 @@ module.exports.saveOwner = async(req)=>{
 }
 
 module.exports.saveProvider = async(req)=>{
-    const { username,password,orgName,orgMail,organization,phoneNumber,altph,add1,add2,city,state,zipCode } = req.body;
+    const { username,password,orgName,orgMail,organization,phoneNumber,about,designation,add1,city,state,zipCode } = req.body;
     const petcareprovider = new PetCareProviderModel({
         uname: username,
         password: password,
@@ -39,9 +39,9 @@ module.exports.saveProvider = async(req)=>{
         email: orgMail,
         org: organization,
         phno: phoneNumber,
-        phno2: altph,
+        designation: designation,
         address: add1,
-        address2: add2,
+        about: about,
         city: city,
         state: state,
         zip: zipCode,
