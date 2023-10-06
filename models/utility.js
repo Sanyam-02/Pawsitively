@@ -63,12 +63,12 @@ module.exports.saveBooking = async(req)=>{
 
 
 
-module.exports.saveService = async(req, res)=>{
-    const { EName,ChargingFee, servicedescription ,Experiencedescription, username} = req
+module.exports.saveService = async(req,res)=>{
+    const { EName,ChargingFee, servicedescription ,noteworthy, username} = req
     const service = new ServiceModel({
         serviceName: EName,
         serviceDescription: servicedescription,
-        experienceDescription: Experiencedescription,
+        noteworthy: noteworthy,
         Fee: ChargingFee,
         uname: username
     });

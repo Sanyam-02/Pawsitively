@@ -26,7 +26,7 @@ module.exports.petOwner = new mongoose.Schema({
 module.exports.service = new mongoose.Schema({
     serviceName: String,
     serviceDescription: String,
-    experienceDescription: String,
+    noteworthy: String,
     Fee: Number,
     uname: {
         type: String,
