@@ -9,90 +9,111 @@
         <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container">
                 <div class="row gy-5 gx-4">
-                    <div class="col-lg-8">
+                    <div class="col-lg-6">
                         <div class="d-flex align-items-center mb-5">
                             <!-- <img class="flex-shrink-0 img-fluid border rounded" src="img/com-logo-2.jpg" alt="" style="width: 80px; height: 80px;"> -->
                             <div class="text-start ps-4">
-                                <h3 class="mb-3"><%= dt1.serviceName %></h3>
-                                <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full Time</span>
-                                <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>₹ <%= dt1.Fee %></span>
+                                <h3 class="mb-3">
+                                    <%= dt1.serviceName %>
+                                </h3>
+                                <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>Full
+                                    Time</span>
+                                <span class="text-truncate me-0"><i
+                                        class="far fa-money-bill-alt text-primary me-2"></i>₹ <%= dt1.Fee %></span>
                             </div>
                         </div>
 
                         <div class="mb-5">
                             <h4 class="mb-3">Service description</h4>
-                            <p><%= dt1.serviceDescription %></p>
+                            <p>
+                                <%= dt1.serviceDescription %>
+                            </p>
                             <h4 class="mb-3">Anything noteworthy</h4>
-                            <p><%= dt1.noteworthy %></p>
-                
-                            
+                            <p>
+                                <%= dt1.noteworthy %>
+                            </p>
+
+
                         </div>
-                        <% if (currentUser.usertype == "owner" ) {%>
-                            <div class="">
-                                <h4 class="fs-2 fw-bold mx-auto my-3 p-1">Schedule Service</h4>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Name</span>
-                                                <input class="form-control" type="text" placeholder="Enter your name">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Email</span>
-                                                <input class="form-control" type="email" placeholder="Enter your email" name="email" required>
-                                            </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="wow fadeIn" data-wow-delay="0.1s">
+                            <div class="row g-0 about-bg rounded overflow-hidden">
+                                <div class="col-6 text-start">
+                                    <img class="img-fluid w-150" src="/img/about-1.jpg">
+                                </div>
+                                <div class="col-6 text-start">
+                                    <img class="img-fluid" src="/img/about-2.jpg" style="width: 120%; height: 100; ">
+                                </div>
+                                <div class="col-6 text-end">
+                                    <img class="img-fluid" src="/img/about-3.jpg" style="width: 120%;">
+                                </div>
+                                <div class="col-6 text-end">
+                                    <img class="img-fluid w-100" src="/img/about-4.jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% if (currentUser.usertype=="owner" ) {%>
+                        <div class="">
+                            <h4 class="mb-3">Schedule a Service</h4>
+                            <form>
+                                <div class="row p-2 bg-body rounded">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Name</span>
+                                            <input class="form-control" type="text" placeholder="Enter your name">
                                         </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Email</span>
+                                            <input class="form-control" type="email" placeholder="Enter your email"
+                                                name="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2 bg-body rounded">
                                     <div class="form-group">
                                         <span class="form-label">Phone</span>
-                                        <input class="form-control" type="tel" placeholder="Enter your phone number" name="phoneNumber" required >
+                                        <input class="form-control" type="tel" placeholder="Enter your phone number"
+                                            name="phoneNumber" required>
                                     </div>
+                                </div>
+                                <div class="row p-2 bg-body rounded">
                                     <div class="form-group">
                                         <span class="form-label">Enter Address</span>
-                                        <input class="form-control" type="text" placeholder="Enter your Address" name="Adress" required>
+                                        <input class="form-control" type="text" placeholder="Enter your Address"
+                                            name="Adress" required>
                                     </div>
-                                    
-                                    <div class="row mb-3">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Service Date</span>
-                                                <input class="form-control" type="date" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <span class="form-label">Service Time</span>
-                                                    <input class="form-control" type="time" required>
-                                                </div>
-                                            </div>
+                                </div>
+                                <div class="row mb-3 p-2 bg-body rounded">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Service Date</span>
+                                            <input class="form-control" type="date" required>
                                         </div>
                                     </div>
-                                    <div class="form-btn">
-                                        <button type="submit" class="btn btn-success btn-md col-md-12">Submit</button>
+                                    <div class="col-sm-2">
+                                        <div class="row">
+                                            <div class="form-group ">
+                                                <span class="form-label ">Service Time</span>
+                                                <input class="form-control" type="time" required>
+                                            </div>
+                                        </div>
                                     </div>
-                                </form>
-                            </div>
-                        <% } %>
-                    </div>
-        
-                    <div class="col-lg-4">
-                        <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
-                            <h4 class="mb-4">Service Summery</h4>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Published On: 01 Jan, 2045</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Vacancy: 123 Position</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Job Nature: Full Time</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Salary: $123 - $456</p>
-                            <p><i class="fa fa-angle-right text-primary me-2"></i>Location: New York, USA</p>
-                            <p class="m-0"><i class="fa fa-angle-right text-primary me-2"></i>Date Line: 01 Jan, 2045</p>
+                                </div>
+                                <div class="form-btn">
+                                    <button type="submit" class="btn btn-success btn-md col-md-12">Submit</button>
+                                </div>
+                            </form>
                         </div>
-                       
-                    </div>
-                    
+                        <% } %>
+
                 </div>
             </div>
         </div>
     </div>
-
