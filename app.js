@@ -254,7 +254,7 @@ app.get('/caretakers', (req,res)=>{
 
 app.get("/caretakers/:id", async(req,res)=>{
     const { id } = req.params
-    const data = await PetCareProviderModel.findById(id)
+    const data = await PetCareProviderModel.findById(id).populate('services')
     console.log(data);
     res.render('user/CaretakerProfile', { data });
 })

@@ -5,22 +5,16 @@
             .gradient-custom {
                 background: linear-gradient(to right bottom, rgb(179, 250, 189), rgb(127, 177, 229));
             }
-
-            .custom-card {
-                width: 700px;
-                height: 500px;
-
-            }
         </style>
     </head>
     <section class="" style="background-color: #f4f5f7;">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6 offset-lg-1 mt-4">
-                    <div class="card mb-5 custom-card" style="border-radius: .5rem;">
+                    <div class="card mb-5" style="border-radius: .5rem;">
                         <div class="row g-0">
                             <div class="col-md-4 gradient-custom text-center text-white"
-                                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; ">
                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" alt="Avatar"
                                     class="rounded-circle my-5 img-fluid" style="width: 175px;" />
 
@@ -28,13 +22,6 @@
                                 <h6>Veterinary Assistant</h6>
                                 <p>&#10003 background checked</p>
                                 <p>&#x2197 high demand</p>
-                                <a id="buttondrop"
-                                    class="btn btn-primary py-md-3 px-md-6 me-8 justify-content-center dropdown-toggle"
-                                    data-bs-toggle="dropdown" aria-expanded="false">Book Now</a>
-                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="buttondrop">
-                                    <li><a class="dropdown-item" href="/Confirmation">Slot 1</a></li>
-                                    <li><a class="dropdown-item" href="/Confirmation">Slot 2</a></li>
-                                </ul>
                                 <!-- to add star rating later
                 <div class="container">
                     <span id="rateMe1"></span>
@@ -45,7 +32,7 @@
 
                             </div>
                             <div class="col-md-8">
-                                <div class="card-body p-5">
+                                <div class="card-body ">
                                     <p>“Hello! I work in veterinary shelter medicine, and I have 10+ years of experience
                                         with dogs of all breeds, sizes, and temperaments. I specialize in animal safe
                                         handling and behavior. Looking forward to meeting you and your fine furry
@@ -54,11 +41,11 @@
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
                                             <h6>Email</h6>
-                                            <p class="text-muted">info@example.com</p>
+                                            <p class="text-muted"><%= data.email %></p>
                                         </div>
                                         <div class="col-6 mb-3">
                                             <h6>Phone</h6>
-                                            <p class="text-muted">123 456 789</p>
+                                            <p class="text-muted"><%= data.phno %></p>
                                         </div>
                                     </div>
                                     <hr class="mt-0 mb-4">
@@ -67,18 +54,13 @@
                                     <div class="row pt-1">
                                         <p>Dog walking</p>
 
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-auto">
-                                        <a href="#!"><i class="fab fa-facebook-f fa-lg me-5"></i></a>
-                                        <a href="#!"><i class="fab fa-twitter fa-lg me-5"></i></a>
-                                        <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
-                                    </div>
+                                    </div>  
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 offset-lg-1 mt-4">
+                <div class="col-lg-3 mt-4">
                     <div class="row">
                         <div class="">
                             <a class="cat-item rounded p-4 gradient-custom" href="/service-detail">
