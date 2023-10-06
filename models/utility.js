@@ -63,7 +63,7 @@ module.exports.saveBooking = async(req)=>{
 
 
 
-module.exports.saveService = async(req)=>{
+module.exports.saveService = async(req, res)=>{
     const { EName,ChargingFee, servicedescription ,Experiencedescription, username} = req
     const service = new ServiceModel({
         serviceName: EName,
@@ -76,6 +76,8 @@ module.exports.saveService = async(req)=>{
     provider[0].services.push(service);
     await service.save()
     await provider[0].save()
+
+    res.redirect(`services/${service._id}`);
 }
 
 module.exports.getServiceData = async(req,res)=>{

@@ -254,8 +254,9 @@ app.get('/caretakers', (req,res)=>{
 
 app.get("/caretakers/:id", async(req,res)=>{
     const { id } = req.params
-    const data = await PetCareProviderModel.findById(id).populate('services')
-    console.log(data);
+    const provider = await PetCareProviderModel.findById(id)
+    const data1 = await ServiceModel.find({ _id: provider.services})
+    const data = {provider, data1}
     res.render('user/CaretakerProfile', { data });
 })
 
@@ -267,8 +268,7 @@ app.post("/addservice", async (req,res)=>{
     let dt1 = req.body;
     dt1["username"] = req.session.user.username;
     dt1["usertype"] = req.session.user.usertype;
-    saveService(dt1);
-    res.render('services/service-detail',{dt1:dt1});
+    saveService(dt1, res);
 })
 
 app.get("/Confirmation", (req,res)=>{
