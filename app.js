@@ -23,7 +23,7 @@ const MongoStore = require('connect-mongo');
 const app = express();
 
 //const dbUrl = 'mongodb://127.0.0.1/pawsitively';
-const dbUrl = 'mongodb://localhost:27017/pawsitively';
+const dbUrl ='mongodb+srv://pawsitively2023:SzhwOEEQJHtT8Aon@cluster0.ts44qwl.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp' || 'mongodb://localhost:27017/pawsitively';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true

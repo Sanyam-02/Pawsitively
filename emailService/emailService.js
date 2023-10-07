@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const getOTP = require('./generateOtpSevice');
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/pawsitively");
+//mongoose.connect("mongodb://localhost:27017/pawsitively");
 const { saveOwner, saveProvider, saveBooking,saveService,getServiceData,updateOtp } = require('../models/utility');
 const { petOwner,petCareProvider,booking,service} = require('../models/schemas');
 
