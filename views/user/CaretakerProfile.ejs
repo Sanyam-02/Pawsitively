@@ -25,13 +25,21 @@
                                     <%= data.provider.designation %>
                                 </h6>
                                 <% if(currentUser.username==data.provider.uname) {%>
-                                <div class="row">
-                                    <% if(!data.provider.Verified) {%>
+
+                                    <div class="row">
+                                        <% if(data.provider.Verified) {%>
+                                            <p>&#10003 background checked</p>
+                                            <% } %>
+                                                <% if(!data.provider.Verified) {%>
+                                                    <div class="d-flex justify-content-center mb-2">
+                                                        <a href="/getOtp/<%= data.provider._id%>"
+                                                            class="btn btn-outline-dark col-md-6">Get OTP</a>
+                                                    </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="d-flex justify-content-center mb-2">
-                                            <a href="/getOtp/<%= data.provider._id%>"
-                                                class="btn btn-warning fw-bold bg-white col-md-6">Get OTP</a>
-                                            <div class="btn-group dropend ps-2 col-md-6">
-                                                <button type="button" class="btn btn-danger dropdown-toggle"
+                                            <div class="btn-group dropend ps-2 col-md-9">
+                                                <button type="button" class="btn btn-success dropdown-toggle"
                                                     data-bs-toggle="dropdown" aria-expanded="false">
                                                     &nbsp; verify mail
                                                 </button>
@@ -50,11 +58,11 @@
                                             </div>
                                         </div>
                                         <% } %>
-                                </div>
-                                <% } %> 
-                                            <p>&#10003 background checked</p>
-                                            <p>&#x2197 high demand</p>
-                                            <!-- to add star rating later
+                                    </div>
+                                    <% } %>
+
+                                        <p>&#x2197 high demand</p>
+                                        <!-- to add star rating later
                 <div class="container">
                     <span id="rateMe1"></span>
                   </div>
@@ -62,48 +70,48 @@
                   
                   <script src=""></script> -->
 
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body ">
-                                        <h6>About</h6>
-                                        <p>
-                                            <%= data.provider.about %>
-                                        </p>
-                                        <hr class="mt-0 mb-4">
-                                        <div class="row pt-1">
-                                            <div class="col-6 mb-3">
-                                                <h6>Email</h6>
-                                                <p class="text-muted">
-                                                    <%= data.provider.email %>
-                                                </p>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <h6>Phone</h6>
-                                                <p class="text-muted">
-                                                    <%= data.provider.phno %>
-                                                </p>
-                                            </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body ">
+                                    <h6>About</h6>
+                                    <p>
+                                        <%= data.provider.about %>
+                                    </p>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Email</h6>
+                                            <p class="text-muted">
+                                                <%= data.provider.email %>
+                                            </p>
                                         </div>
-                                        <hr class="mt-0 mb-4">
+                                        <div class="col-6 mb-3">
+                                            <h6>Phone</h6>
+                                            <p class="text-muted">
+                                                <%= data.provider.phno %>
+                                            </p>
+                                        </div>
                                     </div>
+                                    <hr class="mt-0 mb-4">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 mt-4">
-                        <div class="row">
-                            <% for( let j=0; j < data.data1.length; j++ ) { %>
-                                <div class="">
-                                    <a class="cat-item rounded p-4 gradient-custom"
-                                        href="/services/<%= data.data1[j]._id %>">
-                                        <i class="fa fa-3x fa-book-reader text-primary mb-4"></i>
-                                        <h6 class="mb-3">
-                                            <%= data.data1[j].serviceName %>
-                                        </h6>
-                                    </a>
-                                </div>
-                                <% } %>
-                        </div>
+                </div>
+                <div class="col-lg-3 mt-4">
+                    <div class="row">
+                        <% for( let j=0; j < data.data1.length; j++ ) { %>
+                            <div class="">
+                                <a class="cat-item rounded p-4 gradient-custom"
+                                    href="/services/<%= data.data1[j]._id %>">
+                                    <i class="fa fa-3x fa-book-reader text-primary mb-4"></i>
+                                    <h6 class="mb-3">
+                                        <%= data.data1[j].serviceName %>
+                                    </h6>
+                                </a>
+                            </div>
+                            <% } %>
                     </div>
                 </div>
+            </div>
     </section>
