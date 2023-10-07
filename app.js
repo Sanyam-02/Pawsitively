@@ -9,7 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-const emailService = require('./views/services/emailService.js');
+const emailService = require('./emailService/emailService');
 
 const { saveOwner, saveProvider, saveBooking,saveService,getServiceData,updateOtp ,getCaretakerData,verifyProvider} = require('./models/utility');
 const { petOwner,petCareProvider,booking,service } = require('./models/schemas');

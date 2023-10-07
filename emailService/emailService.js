@@ -2,8 +2,8 @@ const nodemailer = require('nodemailer');
 const getOTP = require('./generateOtpSevice');
 const mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost:27017/pawsitively");
-const { saveOwner, saveProvider, saveBooking,saveService,getServiceData,updateOtp } = require(__dirname+'\\..\\..\\models\\utility.js');
-const { petOwner,petCareProvider,booking,service} = require(__dirname+'\\..\\..\\models\\schemas.js');
+const { saveOwner, saveProvider, saveBooking,saveService,getServiceData,updateOtp } = require('../models/utility');
+const { petOwner,petCareProvider,booking,service} = require('../models/schemas');
 
 const PetOwnerModel = mongoose.model("PetOwner", petOwner);
 const PetCareProviderModel = mongoose.model("PetCareProvider", petCareProvider);
