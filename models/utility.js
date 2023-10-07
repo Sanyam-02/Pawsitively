@@ -154,6 +154,14 @@ module.exports.getServiceData = async(req,res)=>{
                 }
             })
         }
+        else if("params" in req && "keyword" in req.params){
+            await ServiceModel.find({"$or": [{serviceName:{"$regex":req.params.keyword, "$options":"i"}}, {pet_type:{"$regex":req.params.keyword, "$options":"i"} }]}).then(function (items, err) {
+                if (err) console.log(err);
+                else {
+                    res.render('services/service-list', { data: items })
+                }
+            })
+        }
         else{
             await ServiceModel.find({}).then(function (items, err) {
                 if (err) console.log(err);

@@ -247,6 +247,10 @@ app.post('/services', async(req, res)=>{
     getServiceData(req, res);
 })
 
+app.get('/service/:keyword', async(req,res)=>{
+    getServiceData(req,res);
+})
+
 app.get('/services/:id', async(req,res)=>{
     const { id } = req.params
     const dt1 = await ServiceModel.findById(id);
