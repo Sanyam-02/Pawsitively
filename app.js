@@ -9,7 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-const emailService = require('/Users/apple/Documents/pawasitively/new paw/Pawsitively/views/services/emailService.js');
+const emailService = require('./views/services/emailService.js');
 
 const { saveOwner, saveProvider, saveBooking,saveService,getServiceData,updateOtp ,getCaretakerData,verifyProvider} = require('./models/utility');
 const { petOwner,petCareProvider,booking,service } = require('./models/schemas');
@@ -243,6 +243,10 @@ app.get('/services',async (req,res)=>{
     getServiceData(req,res);
 })
 
+app.post('/services', async(req, res)=>{
+    getServiceData(req, res);
+})
+
 app.get('/services/:id', async(req,res)=>{
     const { id } = req.params
     const dt1 = await ServiceModel.findById(id);
@@ -259,6 +263,10 @@ app.get("/caretakers/:id", async(req,res)=>{
     const data1 = await ServiceModel.find({ _id: provider.services})
     const data = {provider, data1}
     res.render('user/CaretakerProfile', { data });
+})
+
+app.post("/caretakers", (req, res) => {
+    getCaretakerData(req, res)
 })
 
 app.get("/addservice", (req, res) => {

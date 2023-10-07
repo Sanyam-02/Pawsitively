@@ -143,14 +143,24 @@ module.exports.saveService = async(req,res)=>{
 }
 
 module.exports.getServiceData = async(req,res)=>{
+
     try{
-        await ServiceModel.find({}).then(function (items, err) {
-            if (err) console.log(err);
-            else {
-                // console.log(items);
-                res.render('services/service-list', {data:items} )
-            }
-        })
+        if("body" in req && "keyword" in req.body){
+            await ServiceModel.find({serviceName:{"$regex":req.body.keyword, "$options":"i"}}).then(function (items, err) {
+                if (err) console.log(err);
+                else {
+                    res.render('services/service-list', { data: items })
+                }
+            })
+        }
+        else{
+            await ServiceModel.find({}).then(function (items, err) {
+                if (err) console.log(err);
+                else {
+                    res.render('services/service-list', { data: items })
+                }
+            })
+        }
     }catch(err){
         console.error(err);
             throw err;
@@ -159,13 +169,23 @@ module.exports.getServiceData = async(req,res)=>{
 
 module.exports.getCaretakerData = async(req,res)=>{
     try{
-        await PetCareProviderModel.find({}).then(function (items, err) {
-            if (err) console.log(err);
-            else {
-                // console.log(items);
-                res.render('services/caretaker-list', {data: items})
-            }
-        })
+        if ("body" in req && "keyword" in req.body){
+            
+            await PetCareProviderModel.find({ uname: { "$regex": req.body.keyword, "$options": "i" } }).then(function (items, err) {
+                if (err) console.log(err);
+                else {
+                    res.render('services/caretaker-list', { data: items })
+                }
+            })
+        }
+        else{
+            await PetCareProviderModel.find({}).then(function (items, err) {
+                if (err) console.log(err);
+                else {
+                    res.render('services/caretaker-list', { data: items })
+                }
+            })
+        }
     }catch(err){
         console.error(err);
             throw err;
