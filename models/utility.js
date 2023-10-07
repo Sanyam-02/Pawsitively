@@ -126,13 +126,14 @@ module.exports.verifyProvider = async(dt1)=>{
 }
 
 module.exports.saveService = async(req,res)=>{
-    const { EName,ChargingFee, servicedescription ,noteworthy, username} = req
+    const { EName,ChargingFee, servicedescription ,noteworthy, username,pet_type} = req
     const service = new ServiceModel({
         serviceName: EName,
         serviceDescription: servicedescription,
         noteworthy: noteworthy,
         Fee: ChargingFee,
-        uname: username
+        uname: username,
+        pet_type:pet_type
     });
     const provider = await PetCareProviderModel.find({uname:username})
     provider[0].services.push(service);

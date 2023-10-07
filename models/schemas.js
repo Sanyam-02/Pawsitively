@@ -30,6 +30,7 @@ module.exports.service = new mongoose.Schema({
     serviceDescription: String,
     noteworthy: String,
     Fee: Number,
+    pet_type: String,
     uname: {
         type: String,
         required: true
