@@ -24,7 +24,7 @@
                                 <h6>
                                     <%= data.provider.designation %>
                                 </h6>
-                                <% if(currentUser.username==data.provider.uname) {%>
+                                <% if(currentUser && currentUser.username==data.provider.uname) {%>
 
                                     <div class="row">
                                         <% if(data.provider.Verified) {%>

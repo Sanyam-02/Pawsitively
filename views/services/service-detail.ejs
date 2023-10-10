@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <% if (currentUser.usertype=="owner" ) {%>
+                    <% if (currentUser && currentUser.usertype=="owner" ) {%>
                         <div class="">
                             <h4 class="mb-3">Schedule a Service</h4>
                             <form>
