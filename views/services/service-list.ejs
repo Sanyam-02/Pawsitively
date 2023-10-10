@@ -51,6 +51,8 @@
                                                         class="far fa-money-bill-alt text-primary me-2"></i>
                                                     <%= data[i].Fee%>
                                                 </span>
+                                                
+                                            </span>
                                             </div>
                                         </div>
                                         <div
@@ -61,6 +63,8 @@
                                                 <a class="btn btn-primary" href="/services/<%= data[i]._id %>">View
                                                     Detail</a>
                                             </div>
+                                            <small class="text-truncate">Type of service:<%=
+                                                data[i].service_type%></small>
 
                                         </div>
                                     </div>

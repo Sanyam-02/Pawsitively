@@ -8,27 +8,19 @@
 						<div class="booking-form">
 							<form action="/AddService" method="post">
 								<div class="row">
-									<div class="col-sm-4">
+									<div class="col-sm-3">
 										<div class="form-group">
 											<span class="form-label">Service Name</span>
 											<input class="form-control" type="text" placeholder="Enter Service"
 												name="EName">
 										</div>
 									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<span class="form-label">Charging Fee</span>
-											<input class="form-control" type="price"
-												placeholder="Enter your Fee on Hourly Basis" name="ChargingFee"
-												required>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
+									<div class="col-sm-3">
+										<div class="form-group ">
 											<span class="form-label">Type of pet</span>
 											<select id="Category" class="form-select" name="pet_type" required>
 												<option value="" disabled selected> Type of pet</option>
-						
+	
 												<option>Dog</option>
 												<option>Cat</option>
 												<option>Rabbit</option>
@@ -36,15 +28,42 @@
 											</select>
 										</div>
 									</div>
+									<div class="col-sm-3">
+										<div class="form-group">
+											<span class="form-label">Type of Services offered</span>
+											<select id="Category" class="form-select" name="service_type" required>
+												<option value="" disabled selected> Type of Service</option>
+
+												<option>Pet Boarding</option>
+												<option>Dog Walking</option>
+												<option>Pet Grooming</option>
+												<option>Pet Training</option>
+												<option>Pet Daycare</option>
+												<option>Pet Health and Wellness</option>
+
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="form-group">
+											<span class="form-label">Charging Fee</span>
+											<input class="form-control" type="price"
+												placeholder="Enter your Fee on Hourly Basis" name="ChargingFee"
+												required>
+										</div>
+									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group mt-3" >
 									<span class="form-label">Service Description</span>
 									<textarea class="form-control" placeholder="Enter about your Service"
 										name="servicedescription" rows="5" required></textarea>
 								</div>
-								<div class="form-group">
+								
+								
+								<div class="form-group mt-3">
 									<span class="form-label">Anything noteworthy</span>
-									<textarea class="form-control" placeholder="Enter anything worth mentioning about you/your organization or the services being provided"
+									<textarea class="form-control"
+										placeholder="Enter anything worth mentioning about you/your organization or the services being provided"
 										name="noteworthy" rows="5" required></textarea>
 								</div>
 

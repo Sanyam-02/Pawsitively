@@ -126,13 +126,14 @@ module.exports.verifyProvider = async(dt1)=>{
 }
 
 module.exports.saveService = async(req,res)=>{
-    const { EName,ChargingFee, servicedescription ,noteworthy, username,pet_type} = req
+    const { EName,ChargingFee, servicedescription ,noteworthy, username,pet_type,service_type} = req
     const service = new ServiceModel({
         serviceName: EName,
         serviceDescription: servicedescription,
         noteworthy: noteworthy,
         Fee: ChargingFee,
         uname: username,
+        service_type:service_type,
         pet_type:pet_type
     });
     const provider = await PetCareProviderModel.find({uname:username})
@@ -180,9 +181,10 @@ module.exports.getCaretakerData = async(req,res)=>{
     try{
         if ("body" in req && "keyword" in req.body){
             
-            await PetCareProviderModel.find({ uname: { "$regex": req.body.keyword, "$options": "i" } }).then(function (items, err) {
+            await PetCareProviderModel.find({ name: { "$regex": req.body.keyword, "$options": "i" } }).then(function (items, err) {
                 if (err) console.log(err);
                 else {
+                 //   console.log(items)
                     res.render('services/caretaker-list', { data: items })
                 }
             })
