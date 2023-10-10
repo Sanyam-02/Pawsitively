@@ -5,9 +5,6 @@ const ejsMate = require('ejs-mate');
 const session  = require('express-session')
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const emailService = require('./emailService/emailService');
 
