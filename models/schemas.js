@@ -25,6 +25,15 @@ module.exports.petOwner = new mongoose.Schema({
     zip: Number
 });
 
+module.exports.booking = new mongoose.Schema({
+    uname: String,
+    provider_name: String,
+    schedule: Date,
+    agenda: String
+});
+
+const BookingModel = mongoose.model("BookingModel", this.booking);
+
 module.exports.service = new mongoose.Schema({
     serviceName: String,
     serviceDescription: String,
@@ -35,6 +44,12 @@ module.exports.service = new mongoose.Schema({
         type: String,
         required: true
     },
+    bookings: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "BookingModel"
+        }
+    ]
 });
 
 const ServiceModel = mongoose.model("ServiceModel", this.service);
@@ -64,11 +79,4 @@ module.exports.petCareProvider = new mongoose.Schema({
             ref: "ServiceModel"
         }
     ]
-});
-
-module.exports.booking = new mongoose.Schema({
-    uname: String,
-    provider_name: String,
-    schedule: Date,
-    agenda: String
 });
