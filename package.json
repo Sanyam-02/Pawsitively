@@ -2,7 +2,7 @@
   "name": "pawsitively",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "directories": {
     "lib": "lib"
   },
