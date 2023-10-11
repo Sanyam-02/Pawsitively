@@ -73,7 +73,7 @@ module.exports.saveBooking = async(dt1,res)=>{
     await booking.save();
     await service.save();
 
-    res.redirect(`/services/${dt1.id}`);
+    res.render("ConfirmationPage", {data: {id: booking._id, date:dt1.date, username: dt1.username, pro: sr.uname, fee: sr.Fee }})
 }
 
 
