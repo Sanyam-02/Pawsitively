@@ -54,15 +54,26 @@ module.exports.saveProvider = async(req)=>{
     await petcareprovider.save();
 }
 
-module.exports.saveBooking = async(req)=>{
-    const { username,proName,date,agenda} = req.body;
+module.exports.saveBooking = async(dt1,res)=>{
+    sr = await ServiceModel.findById(String(dt1.id));
+
     const booking = new BookingModel({
-        uname: username,
-        provider_name: proName,
-        schedule: date,
-        agenda: agenda
+        uname: dt1.username,
+        provider_name: sr.uname,
+        sid: dt1.id,
+        email: dt1.email,
+        phoneNumber: dt1.phoneNumber,
+        address: dt1.address,
+        date: dt1.date,
+        time: dt1.time
     });
+    let service = await ServiceModel.findById(dt1.id);
+    service.bookings.push(booking);
+    
     await booking.save();
+    await service.save();
+
+    res.redirect(`/services/${dt1.id}`);
 }
 
 

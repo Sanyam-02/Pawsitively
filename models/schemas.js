@@ -25,13 +25,21 @@ module.exports.petOwner = new mongoose.Schema({
     zip: Number
 });
 
+
+
 module.exports.booking = new mongoose.Schema({
     uname: String,
     provider_name: String,
-    schedule: Date,
-    agenda: String
+    sid: {
+        type: Schema.Types.ObjectId,
+        ref: "ServiceModel"
+    },
+    email: String,
+    phoneNumber: Number,
+    address: String,
+    date: String,
+    time: String
 });
-
 const BookingModel = mongoose.model("BookingModel", this.booking);
 
 module.exports.service = new mongoose.Schema({

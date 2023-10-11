@@ -111,8 +111,9 @@ app.post("/login", async(req,res)=>{
                                 res.redirect('/');
                             }
                             else{
-                                req.flash('error', 'User not found');
+                                req.flash('error', 'Invalid Password!');
                                 console.log("Invalid Password!");
+                                res.redirect("/login");
                             }
 
                         }
@@ -128,8 +129,9 @@ app.post("/login", async(req,res)=>{
                     res.redirect('/');
                 }
                 else {
-                    req.flash('error', 'User not found');
+                    req.flash('error', 'Invalid Password!');
                     console.log("Invalid Password!");
+                    res.redirect("/login");
                 }
             }
         }
@@ -251,7 +253,16 @@ app.get('/service/:keyword', async(req,res)=>{
 app.get('/services/:id', async(req,res)=>{
     const { id } = req.params
     const dt1 = await ServiceModel.findById(id);
+    dt1["sid"] = id;
     res.render('services/service-detail',{dt1:dt1})
+})
+
+
+app.post('/services/:id', async (req, res) => {
+    const dt1 = req.body;
+    dt1["id"] = req.params.id
+    dt1["username"] = req.session.user.username;
+    await saveBooking(dt1,res);
 })
 
 app.get('/caretakers', (req,res)=>{
