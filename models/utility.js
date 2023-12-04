@@ -195,7 +195,7 @@ module.exports.getCaretakerData = async(req,res)=>{
             await PetCareProviderModel.find({ name: { "$regex": req.body.keyword, "$options": "i" } }).then(function (items, err) {
                 if (err) console.log(err);
                 else {
-                 //   console.log(items)
+                    // console.log(items)
                     res.render('services/caretaker-list', { data: items })
                 }
             })
@@ -204,6 +204,7 @@ module.exports.getCaretakerData = async(req,res)=>{
             await PetCareProviderModel.find({}).then(function (items, err) {
                 if (err) console.log(err);
                 else {
+                    // console.log(items);
                     res.render('services/caretaker-list', { data: items })
                 }
             })
