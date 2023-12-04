@@ -17,7 +17,6 @@ module.exports.petOwner = new mongoose.Schema({
     phno: Number,
     pet_type: String,
     Vaccine_status: Boolean,
-    img_url: String,
     address: String,
     address2: String,
     city: String,
@@ -38,6 +37,7 @@ module.exports.booking = new mongoose.Schema({
     phoneNumber: Number,
     address: String,
     date: String,
+    img_url: String,
     time: String
 });
 const BookingModel = mongoose.model("BookingModel", this.booking);

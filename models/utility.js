@@ -9,7 +9,7 @@ const BookingModel = mongoose.model("Booking", booking);
 const ServiceModel = mongoose.model("Service", service);
 
 module.exports.saveOwner = async(req)=>{
-    const { username,password, firstName,lastName, email,phnNumber,type,Vaccine, userImage,add1,add2,city,state ,zipCode } = req.body
+    const { username,password, firstName,lastName, email,phnNumber,type,Vaccine,add1,add2,city,state ,zipCode } = req.body
     const petowner = new PetOwnerModel({
         uname: username,
         password: password,
@@ -19,7 +19,6 @@ module.exports.saveOwner = async(req)=>{
         phno: phnNumber,
         pet_type: type,
         Vaccine_status: Vaccine == 'true'? true: false,
-        img_url: userImage,
         address: add1,
         address2: add2,
         city: city,
@@ -33,7 +32,7 @@ module.exports.saveOwner = async(req)=>{
 }
 
 module.exports.saveProvider = async(req)=>{
-    const { username,password,orgName,orgMail,organization,phoneNumber,about,designation,add1,city,state,zipCode } = req.body;
+    const { username,password,orgName,orgMail,organization,phoneNumber, userImage, about,designation,add1,city,state,zipCode } = req.body;
     const petcareprovider = new PetCareProviderModel({
         uname: username,
         password: password,
@@ -41,6 +40,7 @@ module.exports.saveProvider = async(req)=>{
         email: orgMail,
         org: organization,
         phno: phoneNumber,
+        img_url: userImage,
         designation: designation,
         address: add1,
         about: about,
