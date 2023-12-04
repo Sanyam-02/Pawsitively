@@ -37,7 +37,6 @@ module.exports.booking = new mongoose.Schema({
     phoneNumber: Number,
     address: String,
     date: String,
-    img_url: String,
     time: String
 });
 const BookingModel = mongoose.model("BookingModel", this.booking);
@@ -79,6 +78,7 @@ module.exports.petCareProvider = new mongoose.Schema({
     designation:String,
     address: String,
     about: String,
+    img_url: String,
     city: String,
     state: String,
     zip: Number,
