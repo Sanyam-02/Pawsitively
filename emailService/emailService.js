@@ -25,7 +25,7 @@ const emailService = async(sendTo,username,Utype) => {
     dt1["Utype"]=Utype;
     updateOtp(dt1);
     const mailOptions = {
-        from: "ngointerconnect2022@gmail.com",
+        from: "pawsitivelyperfect38@gmail.com",
         to: sendTo,
         subject: "email verfiyusing OTP",
         html:"<h1> Your OTP is:" + otp + "</h1>"
